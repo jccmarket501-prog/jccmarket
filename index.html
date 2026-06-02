@@ -1,177 +1,333 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JCC Market</title>
+<!doctype html>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JCC Market - Tu Tienda de Productos Útiles</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            mono: ['Space Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    .app-wrapper { height: 100%; overflow-y: auto; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+    }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    .animate-slide-up { animation: slideUp 0.6s ease-out forwards; opacity: 0; }
+    .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+    .delay-7 { animation-delay: 0.7s; }
+    .delay-8 { animation-delay: 0.8s; }
+    
+    .product-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+    }
+    .whatsapp-float {
+      animation: pulse-green 2s infinite;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-bg {
+      background: radial-gradient(ellipse at top right, #0a2e1a 0%, #0f172a 50%, #0c0c1d 100%);
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .category-pill {
+      transition: all 0.2s ease;
+    }
+    .category-pill.active, .category-pill:hover {
+      background: #25D366;
+      color: #fff;
+      border-color: #25D366;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ <script src="/_sdk/telemetry_sdk.js"></script></head>
+ <body class="h-full">
+  <div class="app-wrapper bg-slate-950 font-outfit text-white">
+   <!-- Navbar -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center font-bold text-sm">
+       JCC
+      </div><span id="nav-title" class="text-lg font-semibold tracking-tight">JCC Market</span>
+     </div>
+     <div class="hidden md:flex items-center gap-8 text-sm text-slate-400">
+      <a href="#productos" class="hover:text-white transition">Productos</a> <a href="#categorias" class="hover:text-white transition">Categorías</a> <a href="#about" class="hover:text-white transition">Nosotros</a>
+     </div><button onclick="openWhatsApp('Hola, quiero información sobre sus productos')" class="bg-green-500 hover:bg-green-400 text-white text-sm font-medium px-4 py-2 rounded-lg transition flex items-center gap-2"> <i data-lucide="message-circle" style="width:16px;height:16px;"></i> <span class="hidden sm:inline">Contactar</span> </button>
+    </div>
+   </nav><!-- Hero -->
+   <section class="hero-bg relative overflow-hidden pt-32 pb-20 px-4 sm:px-6">
+    <div class="absolute inset-0 overflow-hidden">
+     <div class="absolute top-20 right-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl"></div>
+     <div class="absolute bottom-10 left-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-7xl mx-auto relative z-10">
+     <div class="max-w-3xl">
+      <div class="animate-slide-up delay-1 inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-1.5 text-green-400 text-sm mb-6">
+       <i data-lucide="zap" style="width:14px;height:14px;"></i> Envío a todo el país
+      </div>
+      <h1 id="hero-title" class="animate-slide-up delay-2 text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">Productos <span class="gradient-text">útiles</span> para tu día a día</h1>
+      <p id="hero-subtitle" class="animate-slide-up delay-3 text-lg sm:text-xl text-slate-400 mb-8 max-w-xl">Descubre nuestra selección de productos innovadores, prácticos y de calidad a los mejores precios.</p>
+      <div class="animate-slide-up delay-4 flex flex-wrap gap-4">
+       <button onclick="openWhatsApp('Hola! Quiero ver su catálogo de productos')" class="bg-green-500 hover:bg-green-400 text-white font-semibold px-8 py-4 rounded-xl transition flex items-center gap-3 text-lg shadow-lg shadow-green-500/20"> <i data-lucide="shopping-bag" style="width:22px;height:22px;"></i> Ver Catálogo </button> <a href="#productos" class="border border-white/10 hover:border-white/30 text-white font-medium px-8 py-4 rounded-xl transition flex items-center gap-3 text-lg"> Explorar <i data-lucide="arrow-down" style="width:18px;height:18px;"></i> </a>
+      </div>
+     </div><!-- Stats -->
+     <div class="mt-16 grid grid-cols-3 gap-4 max-w-lg">
+      <div class="animate-slide-up delay-5 glass-card rounded-xl p-4 text-center">
+       <div class="text-2xl font-bold text-green-400">
+        500+
+       </div>
+       <div class="text-xs text-slate-500 mt-1">
+        Productos
+       </div>
+      </div>
+      <div class="animate-slide-up delay-6 glass-card rounded-xl p-4 text-center">
+       <div class="text-2xl font-bold text-green-400">
+        4.8★
+       </div>
+       <div class="text-xs text-slate-500 mt-1">
+        Valoración
+       </div>
+      </div>
+      <div class="animate-slide-up delay-7 glass-card rounded-xl p-4 text-center">
+       <div class="text-2xl font-bold text-green-400">
+        24h
+       </div>
+       <div class="text-xs text-slate-500 mt-1">
+        Envío rápido
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Categories -->
+   <section id="categorias" class="py-16 px-4 sm:px-6 bg-slate-900/50">
+    <div class="max-w-7xl mx-auto">
+     <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Categorías</h2>
+     <div class="flex flex-wrap justify-center gap-3" id="category-filters">
+      <button class="category-pill active border border-white/10 px-5 py-2.5 rounded-full text-sm font-medium" data-cat="all">Todos</button> <button class="category-pill border border-white/10 px-5 py-2.5 rounded-full text-sm font-medium text-slate-400" data-cat="hogar">🏠 Hogar</button> <button class="category-pill border border-white/10 px-5 py-2.5 rounded-full text-sm font-medium text-slate-400" data-cat="tech">📱 Tecnología</button> <button class="category-pill border border-white/10 px-5 py-2.5 rounded-full text-sm font-medium text-slate-400" data-cat="belleza">💄 Belleza</button> <button class="category-pill border border-white/10 px-5 py-2.5 rounded-full text-sm font-medium text-slate-400" data-cat="fitness">💪 Fitness</button> <button class="category-pill border border-white/10 px-5 py-2.5 rounded-full text-sm font-medium text-slate-400" data-cat="cocina">🍳 Cocina</button>
+     </div>
+    </div>
+   </section><!-- Products -->
+   <section id="productos" class="py-16 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="flex items-center justify-between mb-10">
+      <h2 class="text-2xl sm:text-3xl font-bold">Productos Destacados</h2><span class="text-sm text-slate-500" id="product-count">12 productos</span>
+     </div>
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="products-grid">
+     </div>
+    </div>
+   </section><!-- Features -->
+   <section class="py-20 px-4 sm:px-6 bg-slate-900/50">
+    <div class="max-w-7xl mx-auto">
+     <h2 class="text-2xl sm:text-3xl font-bold mb-12 text-center">¿Por qué elegirnos?</h2>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-card rounded-2xl p-8 text-center">
+       <div class="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+        <i data-lucide="truck" style="width:28px;height:28px;color:#25D366;"></i>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">Envío Rápido</h3>
+       <p class="text-slate-400 text-sm">Recibe tus productos en la puerta de tu casa en tiempo récord.</p>
+      </div>
+      <div class="glass-card rounded-2xl p-8 text-center">
+       <div class="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+        <i data-lucide="shield-check" style="width:28px;height:28px;color:#25D366;"></i>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">Calidad Garantizada</h3>
+       <p class="text-slate-400 text-sm">Todos nuestros productos pasan por control de calidad antes de enviarse.</p>
+      </div>
+      <div class="glass-card rounded-2xl p-8 text-center">
+       <div class="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center mx-auto mb-5">
+        <i data-lucide="headphones" style="width:28px;height:28px;color:#25D366;"></i>
+       </div>
+       <h3 class="font-semibold text-lg mb-2">Atención Personalizada</h3>
+       <p class="text-slate-400 text-sm">Te asesoramos por WhatsApp para que encuentres lo que necesitas.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- About -->
+   <section id="about" class="py-20 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="text-2xl sm:text-3xl font-bold mb-6">Sobre JCC Market</h2>
+     <p class="text-slate-400 text-lg leading-relaxed mb-8">Somos una tienda dedicada a traerte los mejores productos innovadores y útiles para tu vida diaria. Seleccionamos cuidadosamente cada artículo para ofrecerte calidad, funcionalidad y los mejores precios del mercado.</p><button onclick="openWhatsApp('Hola! Me gustaría saber más sobre JCC Market')" class="bg-green-500 hover:bg-green-400 text-white font-semibold px-8 py-4 rounded-xl transition inline-flex items-center gap-3 shadow-lg shadow-green-500/20">
+      <svg viewbox="0 0 24 24" fill="currentColor" style="width:22px;height:22px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.359 0-4.542-.804-6.275-2.152l-.438-.353-3.2 1.073 1.073-3.2-.353-.438A9.96 9.96 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
+      </svg> Escríbenos por WhatsApp </button>
+    </div>
+   </section><!-- Footer -->
+   <footer class="border-t border-white/5 py-10 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+     <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center font-bold text-xs">
+       JCC
+      </div><span class="text-sm text-slate-500">© 2024 JCC Market. Todos los derechos reservados.</span>
+     </div>
+     <div class="flex items-center gap-4 text-slate-500">
+      <button onclick="openWhatsApp('Hola!')" class="hover:text-green-400 transition"><i data-lucide="message-circle" style="width:20px;height:20px;"></i></button>
+     </div>
+    </div>
+   </footer><!-- Floating WhatsApp Button --> <button onclick="openWhatsApp('Hola! Estoy interesado en sus productos')" class="whatsapp-float fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-400 w-16 h-16 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/30 transition-transform hover:scale-110">
+    <svg viewbox="0 0 24 24" fill="white" style="width:30px;height:30px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.359 0-4.542-.804-6.275-2.152l-.438-.353-3.2 1.073 1.073-3.2-.353-.438A9.96 9.96 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
+    </svg></button>
+  </div>
+  <script>
+    // Config & SDK
+    const defaultConfig = {
+      hero_title: 'Productos <span class="gradient-text">útiles</span> para tu día a día',
+      hero_subtitle: 'Descubre nuestra selección de productos innovadores, prácticos y de calidad a los mejores precios.',
+      whatsapp_number: '521234567890',
+      background_color: '#0f172a',
+      surface_color: '#1e293b',
+      text_color: '#f8fafc',
+      primary_action_color: '#25D366',
+      secondary_action_color: '#94a3b8',
+      font_family: 'Outfit',
+      font_size: 16
+    };
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    background:#f2f2f2;
+    let config = { ...defaultConfig };
+
+    // Products data
+    const products = [
+      { id: 1, name: "Lámpara LED Inteligente", cat: "hogar", tag: "Popular", img: "https://images.unsplash.com/photo-1565636192335-14c0b256a546?w=400&h=300&fit=crop" },
+      { id: 2, name: "Audífonos Bluetooth Pro", cat: "tech", tag: "Nuevo", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" },
+      { id: 3, name: "Set de Brochas Premium", cat: "belleza", tag: "", img: "https://images.unsplash.com/photo-1596462502278-af242a95ae5a?w=400&h=300&fit=crop" },
+      { id: 4, name: "Banda de Resistencia Kit", cat: "fitness", tag: "Oferta", img: "https://images.unsplash.com/photo-1517836357463-d25dab16e884?w=400&h=300&fit=crop" },
+      { id: 5, name: "Organizador Multiusos", cat: "hogar", tag: "", img: "https://images.unsplash.com/photo-1600306150772-d071d474e038?w=400&h=300&fit=crop" },
+      { id: 6, name: "Cargador Inalámbrico 3en1", cat: "tech", tag: "Popular", img: "https://images.unsplash.com/photo-1591584191657-b6c3a19cb839?w=400&h=300&fit=crop" },
+      { id: 7, name: "Espejo con Luz LED", cat: "belleza", tag: "Nuevo", img: "https://images.unsplash.com/photo-1580719471384-81a8a8c0c00b?w=400&h=300&fit=crop" },
+      { id: 8, name: "Cortador de Verduras Pro", cat: "cocina", tag: "", img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=300&fit=crop" },
+      { id: 9, name: "Smartwatch Deportivo", cat: "tech", tag: "Popular", img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" },
+      { id: 10, name: "Yoga Mat Antideslizante", cat: "fitness", tag: "", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400&h=300&fit=crop" },
+      { id: 11, name: "Humidificador Aromático", cat: "hogar", tag: "Nuevo", img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop" },
+      { id: 12, name: "Batidora Portátil USB", cat: "cocina", tag: "Oferta", img: "https://images.unsplash.com/photo-1574519320219-553eb213f72d?w=400&h=300&fit=crop" }
+    ];
+
+    let activeCategory = 'all';
+
+    function openWhatsApp(message) {
+    window.location.href =
+    "https://wa.me/573122952583?text=" +
+    encodeURIComponent(message);
 }
 
-header{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      const filtered = activeCategory === 'all' ? products : products.filter(p => p.cat === activeCategory);
+      document.getElementById('product-count').textContent = `${filtered.length} productos`;
+      
+      grid.innerHTML = filtered.map((p, i) => `
+        <div class="product-card glass-card rounded-2xl overflow-hidden animate-slide-up delay-${Math.min(i + 1, 8)}">
+          <div class="h-44 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative overflow-hidden">
+            ${p.tag ? `<span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full z-10">${p.tag}</span>` : ''}
+            <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.style.background='#1e293b'; this.style.display='none';" loading="lazy" />
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold text-sm mb-3 text-slate-100">${p.name}</h3>
+            <button onclick="openWhatsApp('Hola! Me interesa: ${p.name}')" class="w-full bg-green-500 hover:bg-green-400 text-white font-medium py-2.5 rounded-lg transition flex items-center justify-center gap-2">
+              <i data-lucide="shopping-cart" style="width:16px;height:16px;"></i>
+              Consultar
+            </button>
+          </div>
+        </div>
+      `).join('');
+      
+      lucide.createIcons();
+    }
 
-.hero{
-    text-align:center;
-    padding:40px;
-    background:white;
-}
+    // Category filter
+    document.getElementById('category-filters').addEventListener('click', (e) => {
+      const btn = e.target.closest('.category-pill');
+      if (!btn) return;
+      document.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.cat;
+      renderProducts();
+    });
 
-.hero h2{
-    margin-bottom:10px;
-}
+    // Element SDK
+    function applyConfig(cfg) {
+      config = { ...defaultConfig, ...cfg };
+      const heroTitle = document.getElementById('hero-title');
+      const heroSub = document.getElementById('hero-subtitle');
+      if (cfg.hero_title !== undefined) heroTitle.innerHTML = cfg.hero_title;
+      if (cfg.hero_subtitle !== undefined) heroSub.textContent = cfg.hero_subtitle;
+      
+      document.body.style.fontFamily = `${config.font_family}, Outfit, sans-serif`;
+      const baseSize = config.font_size;
+      heroTitle.style.fontSize = '';
+      heroSub.style.fontSize = `${baseSize * 1.25}px`;
+    }
 
-.btn{
-    background:#25D366;
-    color:white;
-    padding:12px 18px;
-    text-decoration:none;
-    border-radius:10px;
-    display:inline-block;
-    margin-top:10px;
-    font-weight:bold;
-}
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (cfg) => { applyConfig(cfg); },
+      mapToCapabilities: (cfg) => ({
+        recolorables: [
+          { get: () => cfg.background_color || defaultConfig.background_color, set: (v) => { cfg.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => cfg.surface_color || defaultConfig.surface_color, set: (v) => { cfg.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => cfg.text_color || defaultConfig.text_color, set: (v) => { cfg.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => cfg.primary_action_color || defaultConfig.primary_action_color, set: (v) => { cfg.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+          { get: () => cfg.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { cfg.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+        ],
+        borderables: [],
+        fontEditable: { get: () => cfg.font_family || defaultConfig.font_family, set: (v) => { cfg.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+        fontSizeable: { get: () => cfg.font_size || defaultConfig.font_size, set: (v) => { cfg.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+      }),
+      mapToEditPanelValues: (cfg) => new Map([
+        ["hero_title", cfg.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", cfg.hero_subtitle || defaultConfig.hero_subtitle],
+        ["whatsapp_number", cfg.whatsapp_number || defaultConfig.whatsapp_number]
+      ])
+    });
 
-.section{
-    text-align:center;
-    padding:20px;
-}
-
-.products{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:20px;
-}
-
-.card{
-    background:white;
-    width:260px;
-    border-radius:12px;
-    padding:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:scale(1.03);
-}
-
-.card img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.price{
-    color:#25D366;
-    font-weight:bold;
-}
-
-footer{
-    text-align:center;
-    padding:15px;
-    background:#111;
-    color:white;
-    margin-top:20px;
-}
-
-/* WhatsApp flotante */
-.whatsapp-float{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    color:white;
-    text-decoration:none;
-    box-shadow:0 4px 10px rgba(0,0,0,0.3);
-}
-</style>
-
-</head>
-
-<body>
-
-<header>
-<h1>🛒 JCC Market</h1>
-<p>Productos útiles para tu día a día</p>
-</header>
-
-<div class="hero">
-<h2>🚀 Compra fácil por WhatsApp</h2>
-<p>Envíos en toda Colombia 🇨🇴</p>
-
-<a class="btn" href="https://wa.me/573122952583?text=Hola%20quiero%20ver%20los%20productos%20de%20JCC%20Market">
-Ver catálogo
-</a>
-</div>
-
-<div class="section">
-<h2>🔥 Productos destacados</h2>
-
-<div class="products">
-
-<!-- PRODUCTO 1 -->
-<div class="card">
-<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=60">
-<h3>Hogar Inteligente</h3>
-<p>Productos útiles para el hogar moderno</p>
-<p class="price">Consultar precio</p>
-<a class="btn" href="https://wa.me/573122952583?text=Quiero%20el%20producto%20de%20hogar">Comprar</a>
-</div>
-
-<!-- PRODUCTO 2 -->
-<div class="card">
-<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=60">
-<h3>Tecnología</h3>
-<p>Dispositivos modernos y prácticos</p>
-<p class="price">Consultar precio</p>
-<a class="btn" href="https://wa.me/573122952583?text=Quiero%20el%20producto%20de%20tecnologia">Comprar</a>
-</div>
-
-<!-- PRODUCTO 3 -->
-<div class="card">
-<img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=500&q=60">
-<h3>Innovación</h3>
-<p>Productos innovadores para tu vida diaria</p>
-<p class="price">Consultar precio</p>
-<a class="btn" href="https://wa.me/573122952583?text=Quiero%20el%20producto%20de%20innovacion">Comprar</a>
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2>📦 ¿Por qué JCC Market?</h2>
-<p>✔ Envíos a toda Colombia</p>
-<p>✔ Atención rápida por WhatsApp</p>
-<p>✔ Productos seleccionados</p>
-<p>✔ Compra segura</p>
-</div>
-
-<footer>
-© 2026 JCC Market
-</footer>
-
-<a class="whatsapp-float" href="https://wa.me/573122952583" target="_blank">
-💬
-</a>
-
-</body>
+    // Initial render
+    renderProducts();
+    lucide.createIcons();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a058d8dedb56e4d8',t:'MTc4MDQyODM1OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
