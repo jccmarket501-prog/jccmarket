@@ -9,42 +9,36 @@
 body{
     font-family: Arial, sans-serif;
     margin:0;
-    background:#f4f4f4;
+    background:#f2f2f2;
 }
 
 header{
     background:#111;
-    color:#fff;
-    padding:20px;
+    color:white;
     text-align:center;
-}
-
-header h1{
-    margin:0;
-    font-size:32px;
+    padding:20px;
 }
 
 .hero{
-    padding:40px;
     text-align:center;
-    background:linear-gradient(135deg,#111,#333);
-    color:white;
+    padding:40px;
+    background:white;
 }
 
 .btn{
     background:#25D366;
     color:white;
-    padding:12px 20px;
+    padding:12px 18px;
     text-decoration:none;
-    border-radius:8px;
+    border-radius:10px;
     display:inline-block;
-    margin-top:15px;
+    margin-top:10px;
     font-weight:bold;
 }
 
 .section{
-    padding:30px;
     text-align:center;
+    padding:20px;
 }
 
 .products{
@@ -56,10 +50,10 @@ header h1{
 
 .card{
     background:white;
-    width:250px;
-    border-radius:10px;
+    width:260px;
+    border-radius:12px;
     padding:15px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card img{
@@ -67,32 +61,9 @@ header h1{
     border-radius:10px;
 }
 
-footer{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:15px;
-    margin-top:30px;
-}
-
-/* Botón flotante WhatsApp */
-.whatsapp-float{
-    position:fixed;
-    width:60px;
-    height:60px;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    color:white;
-    border-radius:50%;
-    text-align:center;
-    font-size:30px;
-    box-shadow:2px 2px 5px rgba(0,0,0,0.3);
-    z-index:100;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
+.price{
+    color:#25D366;
+    font-weight:bold;
 }
 </style>
 
@@ -106,13 +77,11 @@ footer{
 </header>
 
 <div class="hero">
-<h2>🚀 Compra fácil y rápido en Colombia</h2>
-<p>Envíos a todo el país 🇨🇴</p>
+<h2>🚀 Catálogo de productos</h2>
+<p>Compra fácil por WhatsApp con envíos en Colombia</p>
 
-<a class="btn" 
-href="https://wa.me/573122952583?text=Hola%20JCC%20Market%20👋%20estoy%20interesado%20en%20sus%20productos"
-target="_blank">
-Comprar por WhatsApp
+<a class="btn" href="https://wa.me/573122952583?text=Hola%20quiero%20ver%20el%20catálogo%20de%20JCC%20Market">
+Ver catálogo completo
 </a>
 </div>
 
@@ -121,37 +90,31 @@ Comprar por WhatsApp
 
 <div class="products">
 
+<!-- PRODUCTO 1 -->
 <div class="card">
-<img src="https://via.placeholder.com/250">
-<h3>Producto 1</h3>
+<img src="https://images.unsplash.com/photo-1585238342028-4c4d6d7f6a2a?auto=format&fit=crop&w=500&q=60">
+<h3>Producto Hogar</h3>
 <p>Producto útil para tu día a día</p>
-<a class="btn" 
-href="https://wa.me/573122952583?text=Hola%20quiero%20información%20del%20Producto%201"
-target="_blank">
-Comprar
-</a>
+<p class="price">Consultar precio</p>
+<a class="btn" href="https://wa.me/573122952583?text=Quiero%20el%20Producto%20de%20Hogar">Comprar</a>
 </div>
 
+<!-- PRODUCTO 2 -->
 <div class="card">
-<img src="https://via.placeholder.com/250">
-<h3>Producto 2</h3>
-<p>Hogar y tecnología</p>
-<a class="btn" 
-href="https://wa.me/573122952583?text=Hola%20quiero%20el%20Producto%202"
-target="_blank">
-Comprar
-</a>
+<img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=500&q=60">
+<h3>Producto Tecnología</h3>
+<p>Hogar y tecnología para tu vida</p>
+<p class="price">Consultar precio</p>
+<a class="btn" href="https://wa.me/573122952583?text=Quiero%20el%20Producto%20de%20Tecnología">Comprar</a>
 </div>
 
+<!-- PRODUCTO 3 -->
 <div class="card">
-<img src="https://via.placeholder.com/250">
-<h3>Producto 3</h3>
-<p>Innovación y practicidad</p>
-<a class="btn" 
-href="https://wa.me/573122952583?text=Hola%20quiero%20el%20Producto%203"
-target="_blank">
-Comprar
-</a>
+<img src="https://images.unsplash.com/photo-1518441902117-f0a18b8b9d0a?auto=format&fit=crop&w=500&q=60">
+<h3>Innovación</h3>
+<p>Productos innovadores y prácticos</p>
+<p class="price">Consultar precio</p>
+<a class="btn" href="https://wa.me/573122952583?text=Quiero%20el%20Producto%20Innovación">Comprar</a>
 </div>
 
 </div>
@@ -160,20 +123,13 @@ Comprar
 <div class="section">
 <h2>📦 ¿Por qué JCC Market?</h2>
 <p>✔ Envíos a toda Colombia</p>
-<p>✔ Productos seleccionados</p>
 <p>✔ Atención rápida por WhatsApp</p>
+<p>✔ Productos seleccionados</p>
 </div>
 
-<footer>
-© 2026 JCC Market - Todos los derechos reservados
+<footer style="text-align:center;padding:15px;background:#111;color:white;">
+© 2026 JCC Market
 </footer>
-
-<!-- Botón flotante WhatsApp -->
-<a class="whatsapp-float" 
-href="https://wa.me/573122952583?text=Hola%20JCC%20Market%20👋%20necesito%20información"
-target="_blank">
-💬
-</a>
 
 </body>
 </html>
